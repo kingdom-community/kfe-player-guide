@@ -29,6 +29,8 @@ There is no quest. There is no story waiting for you. What you do here is the st
 
 **Staff won't:** run your story, intervene in player conflicts, or tell you what to do. The server is designed to run itself.
 
+Read the full player rules here: [`rules.md`](rules.md).
+
 ---
 
 *What you build here will be forgotten, or it will become legend.*

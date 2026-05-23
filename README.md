@@ -11,3 +11,4 @@ Guides and onboarding materials for Kingdom: First Era players.
 | File | Description |
 |---|---|
 | [`getting-started.md`](getting-started.md) | What the server is, what you can do, and what to expect |
+| [`rules.md`](rules.md) | Short server rules and how they are communicated to players |
