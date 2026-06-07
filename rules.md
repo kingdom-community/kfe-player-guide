@@ -16,13 +16,4 @@ These rules are short on purpose. The server is hands-off, but bad-faith behavio
 
 ---
 
-## How Rules Are Communicated
-
-- **MOTD:** short reminder to read and follow these rules
-- **Spawn sign/book:** quick summary with pointer to full rules
-- **Discord:** rules mirrored in the server's rules/info channel
-- **Join message:** link or prompt to read [`rules.md`](rules.md)
-
----
-
 If you see rule-breaking, report it to staff with evidence when possible.
