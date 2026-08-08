@@ -25,9 +25,9 @@ There is no quest. There is no story waiting for you. What you do here is the st
 
 ## What Staff Will and Won't Do
 
-**Staff will:** handle players who harass others or act in bad faith. Report problems and they will be addressed.
+**Staff will:** act on reports — harassment, griefing, cheating, and anything else the rules cover. Report problems and they will be addressed.
 
-**Staff won't:** run your story, intervene in player conflicts, or tell you what to do. The server is designed to run itself.
+**Staff won't:** run your story, take sides in conflicts that break no rule, or tell you what to do. Raiding, faction war, and hostile roleplay are the server working as intended, not something to be refereed. The server is designed to run itself.
 
 Read the full player rules here: [`rules.md`](rules.md).
 
