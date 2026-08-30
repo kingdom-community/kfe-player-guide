@@ -1,5 +1,9 @@
-# Copy to .github/workflows/docs-ci.yml in any documentation repo.
 name: Docs CI
+
+# Self-contained on purpose. This repository is public and the org's shared
+# CI lives in a private repo — a public caller cannot use a private
+# reusable workflow. Keep this in step with
+# kingdom-community/github-actions/.github/workflows/link-check.yml
 
 on:
   pull_request:
@@ -8,6 +12,96 @@ on:
 
 jobs:
   links:
-    uses: kingdom-community/github-actions/.github/workflows/link-check.yml@main
-  cross-refs:
-    uses: kingdom-community/github-actions/.github/workflows/doc-consistency.yml@main
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check relative Markdown links
+        env:
+          SCAN_PATHS: .
+          CHECK_ANCHORS: true
+        run: |
+          python3 - <<'PY'
+          import os, re, sys, unicodedata
+          from pathlib import Path
+
+          roots = (os.environ.get("SCAN_PATHS") or ".").split()
+          check_anchors = (os.environ.get("CHECK_ANCHORS") or "true").lower() == "true"
+
+          SKIP_DIRS = {".git", "node_modules", ".venv", "venv", "__pycache__"}
+          LINK = re.compile(r"(?<!\!)\[(?P<text>[^\]]*)\]\((?P<target>[^)\s]+)(?:\s+\"[^\"]*\")?\)")
+          HEADING = re.compile(r"^\s{0,3}#{1,6}\s+(.*?)\s*#*\s*$", re.M)
+          FENCE = re.compile(r"^\s*(```|~~~)")
+
+          def markdown_files():
+              for root in roots:
+                  for path in Path(root).rglob("*.md"):
+                      if not any(part in SKIP_DIRS for part in path.parts):
+                          yield path
+
+          def strip_code(text):
+              # Blank out fenced blocks so links inside examples are not checked.
+              out, fenced = [], False
+              for line in text.splitlines():
+                  if FENCE.match(line):
+                      fenced = not fenced
+                      out.append("")
+                      continue
+                  out.append("" if fenced else line)
+              return "\n".join(out)
+
+          def slugify(heading):
+              text = re.sub(r"`([^`]*)`", r"\1", heading)
+              text = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", text)
+              text = unicodedata.normalize("NFKD", text).lower()
+              text = re.sub(r"[^\w\s-]", "", text)
+              return re.sub(r"\s+", "-", text.strip())
+
+          anchors_cache = {}
+
+          def anchors_of(path):
+              if path not in anchors_cache:
+                  try:
+                      found = HEADING.findall(strip_code(path.read_text(encoding="utf-8", errors="replace")))
+                  except OSError:
+                      found = []
+                  anchors_cache[path] = {slugify(h) for h in found}
+              return anchors_cache[path]
+
+          failures, checked = [], 0
+          for source in sorted(markdown_files()):
+              try:
+                  body = strip_code(source.read_text(encoding="utf-8", errors="replace"))
+              except OSError as exc:
+                  failures.append((source, "<unreadable>", str(exc)))
+                  continue
+              for match in LINK.finditer(body):
+                  target = match.group("target").strip()
+                  if target.startswith(("http://", "https://", "mailto:", "tel:", "#!", "<")):
+                      continue
+                  line_no = body[: match.start()].count("\n") + 1
+                  where = f"{source}:{line_no}"
+                  if target.startswith("#"):
+                      if check_anchors and slugify(target[1:]) not in anchors_of(source):
+                          failures.append((where, target, "no heading matches this anchor"))
+                      checked += 1
+                      continue
+                  file_part, _, anchor = target.partition("#")
+                  if not file_part:
+                      continue
+                  resolved = (source.parent / file_part).resolve()
+                  checked += 1
+                  if not resolved.exists():
+                      failures.append((where, target, "file does not exist"))
+                  elif anchor and check_anchors and resolved.is_file() and resolved.suffix == ".md":
+                      if slugify(anchor) not in anchors_of(resolved):
+                          failures.append((where, target, "target file has no matching heading"))
+
+          print(f"Checked {checked} relative links across {len(list(markdown_files()))} Markdown files.")
+          if failures:
+              print("\nBroken links:\n", file=sys.stderr)
+              for where, target, why in failures:
+                  print(f"  {where}\n    -> {target}\n       {why}", file=sys.stderr)
+              print(f"\n{len(failures)} broken link(s).", file=sys.stderr)
+              sys.exit(1)
+          print("No broken relative links.")
+          PY

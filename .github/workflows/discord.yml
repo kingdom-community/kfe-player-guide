@@ -1,5 +1,9 @@
-# Copy to .github/workflows/discord.yml in any kingdom-community repo.
 name: Discord
+
+# Self-contained on purpose. This repository is public and the org's shared
+# CI lives in a private repo — a public caller cannot use a private
+# reusable workflow. Keep this in step with
+# kingdom-community/github-actions/.github/workflows/discord-notify.yml
 
 on:
   push:
@@ -13,5 +17,111 @@ on:
 
 jobs:
   notify:
-    uses: kingdom-community/github-actions/.github/workflows/discord-notify.yml@main
-    secrets: inherit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build and send payload
+        env:
+          WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          USERNAME: Kingdom Community
+          EVENT_NAME: ${{ github.event_name }}
+          ACTION: ${{ github.event.action }}
+          REPO: ${{ github.repository }}
+          ACTOR: ${{ github.actor }}
+          SERVER_URL: ${{ github.server_url }}
+          REF_NAME: ${{ github.ref_name }}
+          SHA: ${{ github.sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_MERGED: ${{ github.event.pull_request.merged }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          RELEASE_URL: ${{ github.event.release.html_url }}
+          HEAD_COMMIT_MSG: ${{ github.event.head_commit.message }}
+          COMPARE_URL: ${{ github.event.compare }}
+        run: |
+          python3 - <<'PY'
+          import json, os, sys, urllib.request
+
+          env = os.environ.get
+          url = (env("WEBHOOK_URL") or "").strip()
+          if not url:
+              # A missing webhook must not fail the caller's build. A repo with no
+              # secret set should stay green and simply say nothing to Discord.
+              print(
+                  "::warning::DISCORD_WEBHOOK_URL is empty — no notification sent. "
+                  "Set it as a repo or organization secret to enable Discord posts.",
+              )
+              sys.exit(0)
+          # A GitHub-flavoured Discord webhook ends in /github and rejects a plain
+          # {content, embeds} body. Post to the base endpoint instead.
+          if url.endswith("/github"):
+              url = url[: -len("/github")]
+          url = url.rstrip("/")
+
+          repo, actor = env("REPO", ""), env("ACTOR", "")
+          server, event, action = env("SERVER_URL", "https://github.com"), env("EVENT_NAME", ""), env("ACTION", "")
+          repo_url = f"{server}/{repo}"
+
+          COLORS = {"open": 0x2DA44E, "merge": 0x8250DF, "close": 0xCF222E, "push": 0x0969DA, "release": 0xBF8700}
+
+          def trim(text, limit=200):
+              text = (text or "").strip().splitlines()[0] if (text or "").strip() else ""
+              return text if len(text) <= limit else text[: limit - 1] + "…"
+
+          title = desc = link = None
+          color = COLORS["push"]
+
+          if event == "push":
+              title = f"Push to {env('REF_NAME','')}"
+              desc = trim(env("HEAD_COMMIT_MSG"))
+              link = env("COMPARE_URL") or repo_url
+          elif event == "pull_request":
+              num, verb = env("PR_NUMBER", "?"), action
+              if action == "closed":
+                  merged = env("PR_MERGED", "").lower() == "true"
+                  verb, color = ("merged" if merged else "closed"), COLORS["merge" if merged else "close"]
+              elif action in ("opened", "reopened"):
+                  color = COLORS["open"]
+              title = f"PR #{num} {verb}"
+              desc = trim(env("PR_TITLE"))
+              link = env("PR_URL") or repo_url
+          elif event == "issues":
+              num = env("ISSUE_NUMBER", "?")
+              color = COLORS["close"] if action == "closed" else COLORS["open"]
+              title = f"Issue #{num} {action}"
+              desc = trim(env("ISSUE_TITLE"))
+              link = env("ISSUE_URL") or repo_url
+          elif event == "release":
+              title = f"Release {env('RELEASE_TAG','')} {action}"
+              color = COLORS["release"]
+              link = env("RELEASE_URL") or repo_url
+          else:
+              title = f"{event} {action}".strip()
+              link = repo_url
+
+          embed = {
+              "title": trim(title, 240) or event,
+              "url": link,
+              "color": color,
+              "author": {"name": repo, "url": repo_url},
+              "footer": {"text": f"by {actor}"},
+          }
+          if desc:
+              embed["description"] = desc
+
+          body = {"username": env("USERNAME") or "Kingdom Community", "embeds": [embed]}
+          req = urllib.request.Request(
+              url,
+              data=json.dumps(body).encode(),
+              headers={"Content-Type": "application/json", "User-Agent": "kingdom-community-ci"},
+              method="POST",
+          )
+          try:
+              with urllib.request.urlopen(req, timeout=20) as resp:
+                  print(f"Discord accepted the post ({resp.status}): {embed['title']}")
+          except Exception as exc:  # noqa: BLE001 - a chat notification must never fail a build
+              print(f"Discord post failed ({exc.__class__.__name__}: {exc}); continuing.", file=sys.stderr)
+          PY
