@@ -23,9 +23,18 @@ by it.
 
 ## How to Join
 
-There is nothing to apply for. The server has no whitelist and no ranks to earn
-— you connect with the server address shared by the Kingdom Community, pick one
-of the four origins at a `[Spawn]` sign, and you are in.
+There is nothing to apply for. The server has no whitelist and no ranks to earn.
+
+**Address: `play.kingdomfirstera.com`**
+
+Add that to your Minecraft server list, pick one of the four origins at a
+`[Spawn]` sign, and you are in.
+
+The address is a name rather than a number on purpose: if the server is ever
+rebuilt or moved, the entry saved in your client keeps working.
+
+The community site at <https://kingdomfirstera.com> carries the same guides,
+live server status, and the published lore.
 
 Read [`getting-started.md`](getting-started.md) before your first session, and
 keep [`commands.md`](commands.md) open next to you for the first few.
