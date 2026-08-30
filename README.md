@@ -10,6 +10,17 @@ by it.
 
 ---
 
+> ## The beta ends 30 September
+>
+> This run is a beta. It opens **Tuesday 1 September 2026** and ends on
+> **Wednesday 30 September 2026**. When it ends, the world is backed up and
+> then **wiped** — builds, items, tribes, and progress do not carry over.
+>
+> Nothing is hidden about this: build something enormous or build nothing at
+> all, but decide knowing the era has thirty days in it.
+
+---
+
 ## How to Join
 
 There is nothing to apply for. The server has no whitelist and no ranks to earn
@@ -43,6 +54,8 @@ keep [`commands.md`](commands.md) open next to you for the first few.
   tribal bands, not political states.
 - **Emergent lore.** The mystery of the First Era is intentional. Gaps are
   features, not failures.
+- **The era ends.** The beta runs to 30 September 2026, after which the world
+  is archived and wiped. What survives an era was never the buildings.
 
 ---
 

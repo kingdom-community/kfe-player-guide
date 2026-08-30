@@ -25,6 +25,21 @@ Each of those is a plugin, and each is reached by typing something. The commands
 
 ---
 
+## How Long This World Lasts
+
+This run is a beta, and it is bounded. It opens **Tuesday 1 September 2026**
+and ends on **Wednesday 30 September 2026** — thirty days.
+
+When it ends the world is **backed up and then wiped**. Nothing carries over:
+whatever you built, gathered, or organized ends with the run. The archive is
+kept, the world is not.
+
+That is worth knowing before you sink a month into a settlement. It does not
+make building pointless — it makes it a different kind of thing. What survives
+an era is the account of it, not the walls.
+
+---
+
 ## What Staff Will and Won't Do
 
 **Staff will:** act on reports — harassment, griefing, cheating, and anything else the rules cover. Report problems and they will be addressed.
