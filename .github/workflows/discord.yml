@@ -1,0 +1,17 @@
+# Copy to .github/workflows/discord.yml in any kingdom-community repo.
+name: Discord
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, reopened, closed]
+  issues:
+    types: [opened, reopened, closed]
+  release:
+    types: [published]
+
+jobs:
+  notify:
+    uses: kingdom-community/github-actions/.github/workflows/discord-notify.yml@main
+    secrets: inherit

@@ -1,0 +1,13 @@
+# Copy to .github/workflows/docs-ci.yml in any documentation repo.
+name: Docs CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  links:
+    uses: kingdom-community/github-actions/.github/workflows/link-check.yml@main
+  cross-refs:
+    uses: kingdom-community/github-actions/.github/workflows/doc-consistency.yml@main
