@@ -1,9 +1,9 @@
 name: Docs CI
 
-# Self-contained on purpose. This repository is public and the org's shared
-# CI lives in a private repo — a public caller cannot use a private
-# reusable workflow. Keep this in step with
-# kingdom-community/github-actions/.github/workflows/link-check.yml
+# Self-contained on purpose. This repository is public and the org's shared CI
+# lives in a private repo — a public caller cannot use a private reusable
+# workflow. Keep both jobs in step with
+# kingdom-community/github-actions/.github/workflows/{link-check,doc-consistency}.yml
 
 on:
   pull_request:
@@ -104,4 +104,69 @@ jobs:
               print(f"\n{len(failures)} broken link(s).", file=sys.stderr)
               sys.exit(1)
           print("No broken relative links.")
+          PY
+
+  cross-refs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check cross-repo references
+        env:
+          KNOWN: github-actions kfe-staff kfe-lore kfe-player-guide kfe-server-ops kfe-config kfe-staff-webapp kfe-staff-dev-loop kfe-server-ops-dev-loop kfe-player-guide-dev-loop
+          RETIRED: kfe-docs=kfe-staff kingdom-first-era=kfe-staff kfe-player-guide-retired=kfe-player-guide
+          ORG: kingdom-community
+        run: |
+          python3 - <<'PY'
+          import os, re, sys
+          from pathlib import Path
+
+          org = (os.environ.get("ORG") or "kingdom-community").strip()
+          known = set((os.environ.get("KNOWN") or "").split())
+          retired = {}
+          for pair in (os.environ.get("RETIRED") or "").split():
+              old, _, new = pair.partition("=")
+              if old:
+                  retired[old] = new or "(removed)"
+
+          SKIP_DIRS = {".git", "node_modules", ".venv", "venv", "__pycache__"}
+          REF = re.compile(rf"github\.com/{re.escape(org)}/(?P<repo>[A-Za-z0-9._-]+)")
+          FENCE = re.compile(r"^\s*(```|~~~)")
+
+          def strip_code(text):
+              out, fenced = [], False
+              for line in text.splitlines():
+                  if FENCE.match(line):
+                      fenced = not fenced
+                      out.append("")
+                      continue
+                  out.append("" if fenced else line)
+              return "\n".join(out)
+
+          failures, seen = [], 0
+          for path in sorted(Path(".").rglob("*.md")):
+              if any(part in SKIP_DIRS for part in path.parts):
+                  continue
+              body = strip_code(path.read_text(encoding="utf-8", errors="replace"))
+              for match in REF.finditer(body):
+                  repo = match.group("repo").rstrip(".,);:").removesuffix(".git")
+                  if not repo:
+                      # Prose placeholders like "github.com/kingdom-community/..."
+                      # strip down to nothing. They name no repository, so there
+                      # is nothing to check and nothing to report.
+                      continue
+                  seen += 1
+                  line_no = body[: match.start()].count("\n") + 1
+                  where = f"{path}:{line_no}"
+                  if repo in retired:
+                      failures.append((where, repo, f"repo was renamed — use {retired[repo]}"))
+                  elif known and repo not in known:
+                      failures.append((where, repo, f"not a known {org} repo (update known-repos if it is new)"))
+
+          print(f"Checked {seen} cross-repo reference(s) to {org}/.")
+          if failures:
+              print("\nStale cross-repo references:\n", file=sys.stderr)
+              for where, repo, why in failures:
+                  print(f"  {where}\n    -> {org}/{repo}\n       {why}", file=sys.stderr)
+              sys.exit(1)
+          print("All cross-repo references resolve to current repo names.")
           PY
