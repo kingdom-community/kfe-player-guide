@@ -49,7 +49,7 @@ Disbanding is `/f disband`, and it only works if you lead the tribe and are its 
 | `/f sethome` / `/f home` | Sets and teleports to your tribe's home. The home has to sit on your own claimed land, and the teleport has a short delay |
 | `/f power` | Shows power statistics for you, or for a tribe you name |
 
-Claiming costs power, so a tribe can only hold as much land as it has power for. That is the limit on how far a tribe can spread, and it is the number `/f power` is telling you about.
+Power is a ceiling on claims rather than something claiming spends, so a tribe can only hold as much land as it has power for. That is the limit on how far a tribe can spread, and it is the number `/f power` is telling you about.
 
 Which of these you can actually run depends on your role in the tribe. A member who has not been given the role for it will be refused.
 
@@ -59,7 +59,7 @@ Locks are separate from claims and work anywhere:
 |---|---|
 | `/lock` | Turns on lock mode — right-click a block to lock it |
 | `/unlock` | Turns on unlock mode — right-click one of your locked blocks |
-| `/accessors add` | Right-click a locked block, then a player, to let them in |
+| `/accessors add` | Right-click a locked block, then type the player's name in chat, to let them in |
 | `/accessors remove` | The same, to shut them out |
 | `/accessors list` | Right-click a locked block to see who can open it |
 
