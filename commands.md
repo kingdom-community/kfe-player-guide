@@ -11,8 +11,10 @@ This is not the full list. Each plugin carries its own help command — `/f help
 | Command | What it does |
 |---|---|
 | `/sethome` | Marks where you are standing as your home |
-| `/home` | Teleports you to it |
+| `/home` | Teleports you to it, after a short delay |
 | `/de getpos` | Tells you your current coordinates |
+
+Both home teleports pause before they fire, and different things interrupt them: `/home` is cancelled if you move at all, and `/f home` further down is cancelled if you take damage.
 
 Two kinds of sign also work without any command. A `[Spawn]` sign carries you to one of the four origin clearings and makes it your respawn point — clicking a different one later replaces the choice. A `[Warp]` sign teleports whoever right-clicks it, always within the world you are already in.
 
@@ -46,7 +48,7 @@ Disbanding is `/f disband`, and it only works if you lead the tribe and are its 
 | `/f unclaim` | Releases the chunk you are standing in |
 | `/f checkclaim` | Says who owns the chunk you are standing in |
 | `/f map` | Draws a text map of nearby claims |
-| `/f sethome` / `/f home` | Sets and teleports to your tribe's home. The home has to sit on your own claimed land, and the teleport has a short delay |
+| `/f sethome` / `/f home` | Sets and teleports to your tribe's home. The home has to sit on your own claimed land, and the teleport has a short delay that taking damage cancels |
 | `/f power` | Shows power statistics for you, or for a tribe you name |
 
 Power is a ceiling on claims rather than something claiming spends, so a tribe can only hold as much land as it has power for. That is the limit on how far a tribe can spread, and it is the number `/f power` is telling you about.
@@ -104,6 +106,8 @@ The rest are one-off messages and do not change your channel:
 | `/emote <action>` | A roleplay action, shown to players nearby |
 | `/roll` / `/roll 2d6` / `/roll 1d20+5` | Rolls dice, announced to players within 25 blocks. A bare `/roll` is one d20 |
 | `/bird <player> <message>` | Sends a bird carrying a message. It flies in real time and arrives later, so distance costs you. Both of you must be online and in the same world, and you can only have one bird out at a time |
+
+`/lo hide` and `/lo show` do for out-of-character asides what `/local hide` and `/local show` do for roleplay chat. Because `/lo` also carries a message, only a bare `/lo hide` or `/lo show` toggles — put anything after the word and it is sent as an aside instead.
 
 The roleplay engine also registers `/me` for emotes, but Minecraft has an `/me` of its own and which one answers has not been checked in-game, so `/emote` is the form to rely on. The same collision applies to `/title`, further down.
 
