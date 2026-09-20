@@ -79,7 +79,7 @@ The character card is six fields. Filling it in is optional and takes a minute.
 | `/card race <race>` | Sets race |
 | `/card subculture <subculture>` | Sets subculture |
 | `/card religion <religion>` | Sets religion |
-| `/card age <age>` | Sets age |
+| `/card age <age>` | Sets age. It has to be a number |
 | `/card gender <gender>` | Sets gender |
 
 No field is checked against a list. Whatever you type is what the card says, which is deliberate — see [`getting-started.md`](getting-started.md) for why the setting is left open.
@@ -151,12 +151,12 @@ Any entity the server has enabled can be tamed, not just the vanilla few.
 | Command | What it does |
 |---|---|
 | `/ss info` | Your skill levels. `/ss info <player>` shows someone else's |
-| `/ss skill <name>` | One skill's level cap and what each level costs in experience |
-| `/ss top` | The leaderboard, overall or per skill |
+| `/ss skill <name>` | One skill's level cap and how steeply its experience requirement climbs from level to level |
+| `/ss top` | The leaderboard. `/ss top <skill>` narrows it to one skill |
 | `/pl add "<line>"` | Adds a line of lore to the item in your hand |
 | `/pl edit <n> "<line>"` / `/pl remove <n>` | Changes or deletes line `n`, counting from 1 |
 | `/title <title>` | Renames the book and quill in your hand, subject to the collision noted above |
-| `/at info` | How long you have played and when you last logged in |
+| `/at info` | How long you have played and when you last logged in. `/at info <player>` shows someone else's |
 | `/at top` | The most active players on the server |
 
 `/pl` writes onto an item, not onto your character. A named sword that carries the line of who it was taken from outlasts the telling of it.

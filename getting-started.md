@@ -42,7 +42,7 @@ an era is the account of it, not the walls.
 
 ## What Staff Will and Won't Do
 
-**Staff will:** act on reports — harassment, griefing, cheating, and anything else the rules cover. Report problems and they will be addressed.
+**Staff will:** act on reports — harassment, griefing, cheating, and anything else the rules cover — and handle technical problems with the server itself. Report either and it will be addressed.
 
 **Staff won't:** run your story, take sides in conflicts that break no rule, or tell you what to do. Raiding, faction war, and hostile roleplay are the server working as intended, not something to be refereed. The server is designed to run itself.
 
