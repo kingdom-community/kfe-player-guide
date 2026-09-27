@@ -57,8 +57,9 @@ keep [`commands.md`](commands.md) open next to you for the first few.
   scheduled events, and no staff-driven narrative. What players build, destroy,
   or remember becomes the history of the era.
 - **Origins, not factions handed to you.** Everyone starts from one of four
-  origins — North, South, East, or West. Beyond the starting location they
-  carry no history. Who your people are is yours to decide.
+  origins — North, South, East, or West. Each has a place to start and an old,
+  unreliable account of how people came to be there. Who your people are is
+  yours to decide.
 - **Tribes, not kingdoms.** Players who organize are forming the earliest
   tribal bands, not political states.
 - **Emergent lore.** The mystery of the First Era is intentional. Gaps are
