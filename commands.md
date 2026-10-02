@@ -133,13 +133,13 @@ Any entity the server has enabled can be tamed, not just the vanilla few.
 
 | Command | What it does |
 |---|---|
-| `/wp tame` | Enters taming mode — right-click the animal while holding the right item |
+| `/wp tame` | Enters taming mode — right-click the animal while holding the right item. If the attempt fails, the item is still used up |
 | `/wp list` | Lists the pets you own |
 | `/wp select <name>` | Picks which pet the next command applies to. Right-clicking a pet does the same thing |
 | `/wp info` / `/wp locate` | Shows details of, or the last known location of, the selected pet |
 | `/wp rename <name>` | Renames it, up to 20 characters |
 | `/wp follow` / `/wp wander` | Tells it to follow you, or to roam |
-| `/wp call` / `/wp gather` | Brings the selected pet, or all of them, to you |
+| `/wp call` / `/wp gather` | Brings the selected pet, or all of them, to you. Only a pet in a loaded part of the world answers, so one left far from every player stays where it is |
 | `/wp lock` / `/wp unlock` | Right-click one of your pets to stop others mounting it, or to allow it again |
 | `/wp trade <player>` | Hands the selected pet to another online player permanently |
 | `/wp setfree` | Releases it back to the wild |
