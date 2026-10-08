@@ -88,13 +88,15 @@ No field is checked against a list. Whatever you type is what the card says, whi
 
 ## Talking
 
-`/local` and `/global` are switches. They change where your ordinary typing goes, and they stay switched until you change them back.
+`/local` and `/global` are switches. They change where your ordinary typing goes, and they stay switched until you change them back. Logging out does not reset them, but a server restart puts everyone back in server-wide chat.
 
 | Command | What it does |
 |---|---|
 | `/local` (or `/rp`) | Sends your normal chat to nearby players only, in character |
 | `/global` (or `/ooc`) | Sends it back to server-wide chat |
-| `/local hide` / `/local show` | Stops and restarts incoming roleplay chat. While hidden you cannot speak in local chat either |
+| `/local hide` / `/local show` | Stops and restarts incoming roleplay chat, including other players' whispers, yells, emotes, and dice rolls. While hidden you cannot speak in local chat either |
+
+In local chat, text between two asterisks — `*waves*` — is shown as an emote, and the rest of the line is spoken.
 
 The rest are one-off messages and do not change your channel:
 
