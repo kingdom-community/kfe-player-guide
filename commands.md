@@ -55,7 +55,7 @@ Power is a ceiling on claims rather than something claiming spends, so a tribe c
 
 Which of these you can actually run depends on your role in the tribe. A member who has not been given the role for it will be refused.
 
-Locks are separate from claims and work anywhere:
+Locks only work on your own tribe's claimed land. Outside it, or without a tribe, a lock is refused:
 
 | Command | What it does |
 |---|---|
