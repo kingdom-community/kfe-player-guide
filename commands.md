@@ -122,10 +122,10 @@ Birds need the other player online. Mailboxes do not.
 | Command | What it does |
 |---|---|
 | `/m send <player> "<message>"` | Sends mail. The quotes are required |
-| `/m send <player> "<message>" -attach` | Sends it with the item in your hand attached |
+| `/m send <player> "<message>" -attach` | Sends it with the item in your hand attached. The item leaves your hand as soon as you send |
 | `/m list` | Lists your mail. `/m list unread` and `/m list archived` narrow it |
-| `/m open <id>` | Reads a message and hands you anything attached to it |
-| `/m archive <id>` / `/m delete <id>` | Files or destroys one |
+| `/m open <id>` | Reads a message and hands you anything attached to it. Whatever does not fit in your inventory stays attached until you open it again |
+| `/m archive <id>` / `/m delete <id>` | Files or destroys one. Deleting a message destroys anything still attached to it, without asking first |
 
 ---
 
