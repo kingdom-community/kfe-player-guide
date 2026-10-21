@@ -167,13 +167,15 @@ Any entity the server has enabled can be tamed, not just the vanilla few.
 
 ## What is not here
 
-Fighting has no command. PvP is ordinary Minecraft combat, bounded by [`rules.md`](rules.md) rather than by the server — with one exception:
+Fighting has no command, and [`rules.md`](rules.md) says when PvP is welcome. The one fight with commands of its own is the duel:
 
 | Command | What it does |
 |---|---|
 | `/duel challenge <player>` | Challenges someone to a duel |
 | `/duel accept <player>` | Accepts a challenge |
 | `/duel cancel <player>` | Turns one down, or calls off one you sent |
+
+Nobody dies in a duel. Accepting heals you both to full and starts a timer. When one of you takes damage that would kill, both of you are put back where you stood and at the health you had when the challenge was accepted, and the winner is handed the loser's head. If the timer runs out first, it is a tie. While it lasts, neither of you can hurt any other player, or be hurt by one.
 
 A duel is consent made explicit, which is what rule 6 asks for. It is not the only way to satisfy that rule, but it is the unambiguous one.
 
