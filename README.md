@@ -4,7 +4,7 @@
 server set in the earliest age of the Greater Kingdom Community's world. No
 application. No whitelist. Join and survive.
 
-You are among the first men. There are no kingdoms yet, no laws, no gods
+You are among the first peoples. There are no kingdoms yet, no laws, no gods
 walking beside you. Form a tribe or survive alone. Tame the wild or be consumed
 by it.
 
