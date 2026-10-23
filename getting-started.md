@@ -21,7 +21,7 @@ This server is part of the Greater Kingdom Community, a long-running Minecraft r
 
 There is no quest. There is no story waiting for you. What you do here is the story.
 
-Each of those is a plugin, and each is reached by typing something. The commands are here: [`commands.md`](commands.md).
+Tribes, taming, and characters each come from a plugin, and each is reached by typing something. The commands are here: [`commands.md`](commands.md). The rest is ordinary Minecraft.
 
 ---
 
