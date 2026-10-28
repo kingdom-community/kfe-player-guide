@@ -46,7 +46,7 @@ Disbanding is `/f disband`, and it only works if you lead the tribe and are its 
 | `/f claim` | Claims the chunk you are standing in for your tribe |
 | `/f claim <radius>` | Claims a circle of chunks around you, up to a configured maximum |
 | `/f unclaim` | Releases the chunk you are standing in |
-| `/f checkclaim` | Says who owns the chunk you are standing in |
+| `/f claim check` | Says who owns the chunk you are standing in |
 | `/f map` | Draws a text map of nearby claims |
 | `/f sethome` / `/f home` | Sets and teleports to your tribe's home. The home has to sit on your own claimed land, and the teleport has a short delay that taking damage cancels |
 | `/f power` | Shows power statistics for you, or for a tribe you name |
