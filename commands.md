@@ -161,7 +161,7 @@ Any entity the server has enabled can be tamed, not just the vanilla few.
 | `/at info` | How long you have played and when you last logged in. `/at info <player>` shows someone else's |
 | `/at top` | The most active players on the server |
 
-`/pl` writes onto an item, not onto your character. A named sword that carries the line of who it was taken from outlasts the telling of it.
+`/pl` writes onto an item, not onto your character. A named sword that carries the line of who it was taken from outlasts the telling of it. The lines are not tied to whoever wrote them, though: whoever holds the item can change or remove any of them.
 
 ---
 
