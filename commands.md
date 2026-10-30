@@ -16,7 +16,7 @@ This is not the full list. Each plugin carries its own help command — `/f help
 
 Both home teleports pause before they fire, and different things interrupt them: `/home` is cancelled if you move at all, and `/f home` further down is cancelled if you take damage.
 
-Two kinds of sign also work without any command. A `[Spawn]` sign carries you to one of the four origin clearings and makes it your respawn point — clicking a different one later replaces the choice. A `[Warp]` sign teleports whoever right-clicks it, always within the world you are already in.
+Two kinds of sign also work without any command. A `[Spawn]` sign carries you to one of the four origin clearings and makes it your respawn point. You only get one pick: after it, every spawn sign refuses you. A bed you have slept in takes priority over the clearing. A `[Warp]` sign teleports whoever right-clicks it, always within the world you are already in.
 
 ---
 
