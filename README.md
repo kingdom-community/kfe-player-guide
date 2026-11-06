@@ -46,7 +46,7 @@ keep [`commands.md`](commands.md) open next to you for the first few.
 | Page | What it covers |
 |---|---|
 | [`getting-started.md`](getting-started.md) | What the server is, what you can do, and what to expect from staff |
-| [`commands.md`](commands.md) | Every command you have from the moment you join — tribes, land, chat, mail, pets, skills |
+| [`commands.md`](commands.md) | The commands you need on your first day — tribes, land, chat, mail, pets, skills |
 | [`rules.md`](rules.md) | The server rules, in full. They are short |
 
 ---
