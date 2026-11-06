@@ -69,7 +69,7 @@ Locks only work on your own tribe's claimed land. Outside it, or without a tribe
 
 ## Your character
 
-The character card is six fields. Filling it in is optional and takes a minute.
+The character card is six fields. Filling it in is optional and takes a minute, but set the name at least: until you do, local chat, `/whisper`, `/yell`, `/emote`, and `/lo` all show you as `defaultName`. Dice rolls and birds use your Minecraft name whatever the card says.
 
 | Command | What it does |
 |---|---|
