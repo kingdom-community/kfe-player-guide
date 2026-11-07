@@ -2,7 +2,7 @@
 
 Everything on this page is available to every player from the moment you join. Nothing here needs staff, an application, or a server rank. The one thing that does gate a command is your role inside your own tribe, and only your tribe decides that.
 
-This is not the full list. Each plugin carries its own help command — `/f help`, `/wp help`, `/rphelp`, `/ss help`, `/m help`, `/pl help`, `/dsh help` — and those are the complete versions. What follows is what you need on your first day.
+This is not the full list. Each plugin carries its own help command — `/f help`, `/wp help`, `/rphelp`, `/ss help`, `/m help`, `/pl help`, `/dsh help`, `/at help`, `/de help` — and those are the complete versions. Some of them also list staff commands, which will refuse you. What follows is what you need on your first day.
 
 ---
 
