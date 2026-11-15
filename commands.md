@@ -65,6 +65,8 @@ Locks only work on your own tribe's claimed land. Outside it, or without a tribe
 | `/accessors remove` | The same, to shut them out |
 | `/accessors list` | Right-click a locked block to see who can open it |
 
+Your locks do not outlast your place in the tribe. If you leave while others are still in it, or are kicked from it, every lock you placed is deleted.
+
 ---
 
 ## Your character
