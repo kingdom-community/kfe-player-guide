@@ -11,10 +11,10 @@ This is not the full list. Each plugin carries its own help command — `/f help
 | Command | What it does |
 |---|---|
 | `/sethome` | Marks where you are standing as your home |
-| `/home` | Teleports you to it, after a short delay |
+| `/home` | Teleports you to it |
 | `/de getpos` | Tells you your current coordinates |
 
-Both home teleports pause before they fire, and different things interrupt them: `/home` is cancelled if you move at all, and `/f home` further down is cancelled if you take damage.
+A home teleport can make you wait before it fires, and different things cancel it during that wait: `/home` is cancelled if you move at all, and `/f home` further down is cancelled if you take damage.
 
 Two kinds of sign also work without any command. A `[Spawn]` sign carries you to one of the four origin clearings and makes it your respawn point. You only get one pick: after it, every spawn sign refuses you. A bed you have slept in takes priority over the clearing. A `[Warp]` sign teleports whoever right-clicks it, always within the world you are already in.
 
@@ -26,7 +26,7 @@ Tribes are Medieval Factions. Anyone can start one.
 
 | Command | What it does |
 |---|---|
-| `/f create <name>` | Founds a tribe. Names are capped at 20 characters |
+| `/f create <name>` | Founds a tribe. Names have a length limit |
 | `/f invite <player>` | Invites someone to yours |
 | `/f join <tribe>` | Joins one you were invited to |
 | `/apply <tribe>` | Asks to join one you were not invited to. Note the missing `/f` — this one is its own command |
@@ -48,7 +48,7 @@ Disbanding is `/f disband`, and it only works if you lead the tribe and are its 
 | `/f unclaim` | Releases the chunk you are standing in |
 | `/f claim check` | Says who owns the chunk you are standing in |
 | `/f map` | Draws a text map of nearby claims |
-| `/f sethome` / `/f home` | Sets and teleports to your tribe's home. The home has to sit on your own claimed land, and the teleport has a short delay that taking damage cancels |
+| `/f sethome` / `/f home` | Sets and teleports to your tribe's home. The home has to sit on your own claimed land |
 | `/f power` | Shows power statistics for you, or for a tribe you name |
 
 Power is a ceiling on claims rather than something claiming spends, so a tribe can only hold as much land as it has power for. That is the limit on how far a tribe can spread, and it is the number `/f power` is telling you about.
@@ -77,7 +77,7 @@ The character card is six fields. Filling it in is optional and takes a minute, 
 |---|---|
 | `/card` | Shows your card |
 | `/card lookup <player>` | Shows someone else's |
-| `/card name <name>` | Sets your character's name. Changing it again is on a cooldown |
+| `/card name <name>` | Sets your character's name. You may have to wait before changing it again |
 | `/card race <race>` | Sets race |
 | `/card subculture <subculture>` | Sets subculture |
 | `/card religion <religion>` | Sets religion |
@@ -104,12 +104,14 @@ The rest are one-off messages and do not change your channel:
 
 | Command | What it does |
 |---|---|
-| `/whisper <message>` | Heard only by players standing right next to you |
-| `/yell <message>` | Heard about twice as far out as normal local chat |
+| `/whisper <message>` | Heard only by players within whisper range |
+| `/yell <message>` | Heard by players within yell range |
 | `/lo <message>` | A nearby out-of-character aside |
 | `/emote <action>` | A roleplay action, shown to players nearby |
 | `/roll` / `/roll 2d6` / `/roll 1d20+5` | Rolls dice, announced to players within 25 blocks. A bare `/roll` is one d20 |
 | `/bird <player> <message>` | Sends a bird carrying a message. It flies in real time and arrives later, so distance costs you. Both of you must be online and in the same world, and you can only have one bird out at a time |
+
+Local chat, whispers, yells, emotes, and `/lo` each have their own range, and the server sets those ranges, not the command.
 
 `/lo hide` and `/lo show` do for out-of-character asides what `/local hide` and `/local show` do for roleplay chat. Because `/lo` also carries a message, only a bare `/lo hide` or `/lo show` toggles — put anything after the word and it is sent as an aside instead.
 
@@ -141,7 +143,7 @@ Any entity the server has enabled can be tamed, not just the vanilla few.
 | `/wp list` | Lists the pets you own |
 | `/wp select <name>` | Picks which pet the next command applies to. Right-clicking a pet does the same thing |
 | `/wp info` / `/wp locate` | Shows details of, or the last known location of, the selected pet |
-| `/wp rename <name>` | Renames it, up to 20 characters. Only the first word is kept, so `/wp rename Old Bess` names it `Old` |
+| `/wp rename <name>` | Renames it. Names have a length limit, and only the first word is kept, so `/wp rename Old Bess` names it `Old` |
 | `/wp follow` / `/wp wander` | Tells it to follow you, or to roam |
 | `/wp call` / `/wp gather` | Brings the selected pet, or all of them, to you. Only a pet in a loaded part of the world answers, so one left far from every player stays where it is |
 | `/wp lock` / `/wp unlock` | Right-click one of your pets to stop others mounting it, or to allow it again |
