@@ -8,6 +8,10 @@ You are among the first peoples. There are no kingdoms yet, no laws, no gods
 walking beside you. Form a tribe or survive alone. Tame the wild or be consumed
 by it.
 
+![The Getting started guide rendered on the Kingdom: First Era community site, opening with What This Server Is](docs/screenshots/getting-started.jpg)
+
+*These guides as players read them on [kingdomfirstera.com](https://kingdomfirstera.com/guides).*
+
 ---
 
 > ## The beta ends 30 September
@@ -66,6 +70,34 @@ keep [`commands.md`](commands.md) open next to you for the first few.
   features, not failures.
 - **The era ends.** The beta runs to 30 September 2026, after which the world
   is archived and wiped. What survives an era was never the buildings.
+
+---
+
+## Screenshots
+
+The site renders these Markdown files straight from this repository's default
+branch, so a merged change here is what players see.
+
+| Guide index | Commands |
+|---|---|
+| ![The Guides page of the Kingdom: First Era site, listing Getting started, Rules and Commands](docs/screenshots/guides-index.jpg) | ![The Commands guide on the Kingdom: First Era site, showing the Your tribe table of /f commands](docs/screenshots/commands.jpg) |
+| The guide index, listing the three documents in this repository | [`commands.md`](commands.md): the tribe commands table |
+
+![The Rules guide on the Kingdom: First Era site with its numbered list of seven core rules](docs/screenshots/rules.jpg)
+
+*[`rules.md`](rules.md), the seven core rules, as rendered on the site.*
+
+On a phone (390x844):
+
+<p>
+  <img src="docs/screenshots/getting-started-phone.jpg" width="240" alt="The Getting started guide on a phone-width screen">
+  <img src="docs/screenshots/commands-phone.jpg" width="240" alt="The Finding your way command table from the Commands guide on a phone-width screen">
+</p>
+
+**Regenerating screenshots:** with a copy of the community site running locally,
+`darkroom shoot docs/screenshots/media.json --var base=http://localhost:3000 --force`
+(shot list: [`docs/screenshots/media.json`](docs/screenshots/media.json), tool:
+[darkroom](https://github.com/Preponderous-Software/darkroom)).
 
 ---
 

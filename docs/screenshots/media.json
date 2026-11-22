@@ -1,0 +1,89 @@
+{
+  "description": "The player guide as the community site renders it. Point `base` at a running copy of the site (it fetches these Markdown files from this repository's default branch).",
+  "out": ".",
+  "vars": {
+    "base": "http://localhost:3000"
+  },
+  "budgets": {
+    "still_kb": 200
+  },
+  "defaults": {
+    "backend": "web",
+    "adapter": "hook",
+    "ready": "document.readyState === 'complete' && [...document.querySelectorAll('a, button')].some(e => /sign in/i.test(e.textContent))"
+  },
+  "shots": [
+    {
+      "name": "guides-index",
+      "kind": "still",
+      "device": "desktop",
+      "file": "guides-index.jpg",
+      "url": "{base}/guides",
+      "caption": "The guide index on kingdomfirstera.com, listing the three documents in this repository.",
+      "alt": "The Guides page of the Kingdom: First Era site, listing Getting started, Rules and Commands"
+    },
+    {
+      "name": "getting-started",
+      "kind": "still",
+      "device": "desktop",
+      "file": "getting-started.jpg",
+      "url": "{base}/guides/getting-started",
+      "caption": "getting-started.md rendered on the community site.",
+      "alt": "The Getting started guide on the Kingdom: First Era site, opening with What This Server Is"
+    },
+    {
+      "name": "commands",
+      "kind": "still",
+      "device": "desktop",
+      "file": "commands.jpg",
+      "url": "{base}/guides/commands",
+      "steps": [
+        {
+          "js": "document.getElementById('your-tribe') ? document.getElementById('your-tribe').scrollIntoView() : [...document.querySelectorAll('h2')].find(h => /tribe/i.test(h.textContent))?.scrollIntoView()"
+        },
+        {
+          "wait": 400
+        }
+      ],
+      "caption": "The command reference: the tribe commands table from commands.md.",
+      "alt": "The Commands guide on the Kingdom: First Era site, showing the Your tribe table of /f commands"
+    },
+    {
+      "name": "rules",
+      "kind": "still",
+      "device": "desktop",
+      "file": "rules.jpg",
+      "url": "{base}/guides/rules",
+      "caption": "rules.md, the seven core rules, rendered on the site.",
+      "alt": "The Rules guide on the Kingdom: First Era site with its numbered list of seven core rules"
+    },
+    {
+      "name": "getting-started-phone",
+      "kind": "still",
+      "device": "phone",
+      "width": 390,
+      "file": "getting-started-phone.jpg",
+      "url": "{base}/guides/getting-started",
+      "caption": "The same guide on a 390x844 phone.",
+      "alt": "The Getting started guide on a phone-width screen"
+    },
+    {
+      "name": "commands-phone",
+      "kind": "still",
+      "device": "phone",
+      "width": 390,
+      "file": "commands-phone.jpg",
+      "url": "{base}/guides/commands",
+      "steps": [
+        {
+          "js": "[...document.querySelectorAll('h2')].find(h => /finding your way/i.test(h.textContent))?.scrollIntoView()"
+        },
+        {
+          "wait": 400
+        }
+      ],
+      "caption": "A command table on a 390x844 phone.",
+      "alt": "The Finding your way command table from the Commands guide on a phone-width screen"
+    }
+  ]
+}
